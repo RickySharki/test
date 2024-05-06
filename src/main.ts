@@ -1,6 +1,5 @@
 import { createApp } from 'vue'
 import './style.css'
-
 import App from './App.vue'
 import { setupRouter } from './router'
 import 'element-plus/dist/index.css'
@@ -10,6 +9,7 @@ import { setupElementPlus } from './utils/registerElement'
 import { setupI18n } from './locales/index'
 // 这里使用函数的方法进行注册，是为了处理一下异步的情况，可以使用async/await
 function init() {
+  // READ: sept 1
   const app = createApp(App)
   setupRouter(app)
   setupStore(app)

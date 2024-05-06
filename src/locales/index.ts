@@ -14,6 +14,7 @@ export const i18nOptions = {
   legacy: false,
 }
 
+// 初始化I18n国际化 文档地址：https://kazupon.github.io/vue-i18n/zh/
 export function setupI18n(app: App) {
   console.log('i18nOptions', i18nOptions)
   const i18n = createI18n(i18nOptions) as I18n

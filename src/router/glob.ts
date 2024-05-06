@@ -1,5 +1,6 @@
 import type { RouteComponent, RouteMeta, RouteRecordRaw } from 'vue-router'
 
+// 自动注册路由
 // global.ts
 function getRouterMeta() {
   const routerMeta = import.meta.glob('../pages/**/meta.ts', {
