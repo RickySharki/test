@@ -26,3 +26,15 @@ pages/
 ## 项目中使用typescript构建
 
 请将所有的类型按模块在`model`中创建
+
+TODO：
+- 登陆注册
+- 权限管理
+- 面包屑
+- 全局404
+- 国际化
+- 全局组件的封装(messagebox、dialog等)
+- 全局指令(v-permission)
+- 全局通用hook封装
+- 富文本编辑器（评论编辑框）
+- 大屏
