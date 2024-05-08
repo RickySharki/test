@@ -19,4 +19,5 @@ export default [
     method: 'post',
     response: () => resultSuccess(tokenInfo),
   },
+  // 添加一个接口，故意报错404  resultError('404 NOT FOUND',{code:404,{success:false}})
 ] as MockMethod[]
