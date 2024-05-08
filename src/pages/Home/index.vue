@@ -9,6 +9,8 @@
     />
   </el-select>
   <comp />
+  <el-link>点击这个按钮调用报错的接口，去往404页面</el-link>
+  <el-button>to 404Page</el-button>
 </template>
 
 <script lang="ts" setup>
