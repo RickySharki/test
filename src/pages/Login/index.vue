@@ -47,7 +47,7 @@
 <script lang="ts" setup>
 import type { LoginForm } from '@model/user'
 import type { FormInstance } from 'element-plus'
-import { useUserInfoStore } from '@store/mouldesmouldes/user'
+import { useUserInfoStore } from '@store/mouldes/user'
 
 const router = useRouter()
 console.log('🚀 ~ file: index.vue:53 ~ router:', router)
