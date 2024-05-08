@@ -47,7 +47,7 @@
 <script lang="ts" setup>
 import type { LoginForm } from '@model/user'
 import type { FormInstance } from 'element-plus'
-import { useUserInfoStore } from '@store/mouldes/user'
+import { useUserInfoStore } from '@store/mouldesmouldes/user'
 
 const router = useRouter()
 console.log('🚀 ~ file: index.vue:53 ~ router:', router)
@@ -61,7 +61,9 @@ const loginForm = reactive<LoginForm>({
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl)
     return
+  // validate()用于对表单进行验证
   formEl.validate(async (valid) => {
+    // valid为表单验证结果
     if (valid) {
       const res = await store.Login(loginForm)
       if (res?.token)
@@ -77,6 +79,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl)
     return
+  // resetFields()用于重置表单字段，将表单字段的值重置为初始值
   formEl.resetFields()
 }
 </script>

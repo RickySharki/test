@@ -22,3 +22,5 @@ export const timeConverter = (time: number) => {
   else
     return `${seconds}s`
 }
+
+console.log(timeConverter(10000))

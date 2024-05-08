@@ -46,6 +46,9 @@ devDependencies:
   '@types/node':
     specifier: ^18.11.18
     version: 18.11.18
+  '@types/qs':
+    specifier: ^6.9.15
+    version: 6.9.15
   '@vitejs/plugin-vue':
     specifier: ^4.0.0
     version: 4.0.0(vite@4.0.4)(vue@3.2.45)
@@ -700,6 +703,10 @@ packages:
 
   /@types/normalize-package-data@2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
+    dev: true
+
+  /@types/qs@6.9.15:
+    resolution: {integrity: sha512-uXHQKES6DQKKCLh441Xv/dwxOq1TVS3JPUMlEqoEglvlhR6Mxnlew/Xq/LRVHpLyk7iK3zODe1qYHIMltO7XGg==}
     dev: true
 
   /@types/resolve@1.17.1:

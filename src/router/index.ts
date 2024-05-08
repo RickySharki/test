@@ -25,14 +25,17 @@ export const router = createRouter({
 })
 
 // reset router
+// 重置路由
 export function resetRouter() {
   router.getRoutes().forEach((route) => {
     const { name } = route
+    // 存在不在白名单中的路由就移除
     if (name && !WHITE_NAME_LIST.includes(name as string))
       router.hasRoute(name) && router.removeRoute(name)
   })
 }
 
+// 路由守卫鉴权
 router.beforeEach((to, from, next) => {
   const { token } = toRefs(useUserInfoStore())
   if (!token.value && to.path !== '/login')

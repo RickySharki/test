@@ -26,6 +26,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.34.0",
     "@types/node": "^18.11.18",
+    "@types/qs": "^6.9.15",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vueuse/core": "^9.10.0",
     "@vueuse/integrations": "^9.10.0",
