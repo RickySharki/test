@@ -9,7 +9,6 @@ export const timeConverter = (time: number) => {
   const minutes = duration.minutes()
   const seconds = duration.seconds()
   const days = duration.days()
-
   if (days > 0)
     return `${days}d ${hours}h ${minutes}m`
 

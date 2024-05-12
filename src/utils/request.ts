@@ -27,6 +27,8 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
 
 // 添加了一个响应拦截器
 instance.interceptors.response.use((res) => {
+  if (res.data.code !== 200)
+    return res.data
   // 同意处理res.code === 404,跳转404页面
   return res.data.data
 })

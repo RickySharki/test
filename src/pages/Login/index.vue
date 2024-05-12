@@ -66,6 +66,7 @@ const submitForm = (formEl: FormInstance | undefined) => {
     // valid为表单验证结果
     if (valid) {
       const res = await store.Login(loginForm)
+      console.log(res)
       if (res?.token)
         router.push('/home')
     }

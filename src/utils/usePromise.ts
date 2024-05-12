@@ -49,7 +49,6 @@ function usePromise<T, TArgs extends any[] = []>(
   const result = ref<T | null>(start)
   const error = ref<unknown>(null)
   const isLoading = ref(innerOption.immediate)
-
   const receiveCallbacks: Array<(response: T) => void> = []
   const onReceive = (callback: (response: T) => void) => {
     receiveCallbacks.push(callback)
@@ -66,24 +65,23 @@ function usePromise<T, TArgs extends any[] = []>(
   })
 
   const refresh = (...args: TArgs) => {
+    // login(form)
     return new Promise<T>((resolve, reject) => {
       isLoading.value = true
       if (option?.clearOnRefresh)
         result.value = start as UnwrapRef<T> | null
-
+      // () => notfind()
       Promise.resolve(func(...args))
         .then((r) => {
           result.value = r as any
           if (receiveCallbacks.length > 0)
             receiveCallbacks.forEach(callback => callback(r))
-
           resolve(r)
         })
         .catch((err) => {
           error.value = err
           if (receiveCallbacks.length > 0)
             receiveCallbacks.forEach(callback => callback(err))
-
           reject(err)
         })
         .finally(() => {
