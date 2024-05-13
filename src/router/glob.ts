@@ -15,7 +15,6 @@ const getComponents = import.meta.glob('../pages/**/*.vue', { eager: true, impor
 console.log('🚀 ~ file: glob.ts:12 ~ getComponents:', getComponents)
 // 自动注册路由
 export const vueRouters = function (): Array<RouteRecordRaw> {
-  debugger
   // const routerList: Array<RouteRecordRaw> = []
   const pageMeta = getRouterMeta()
   // Object.entries(pageMeta) 将 pageMeta 对象转换为一个数组
@@ -23,7 +22,6 @@ export const vueRouters = function (): Array<RouteRecordRaw> {
     const path = pagePath.replace('../pages', '').replace('/meta.ts', '')
     const name = path.split('/').filter(Boolean).join('-')
     const component = pagePath.replace('meta.ts', 'index.vue')
-    console.log(component)
     // console.log('modules[key]', modules[key])
     // 首字母转小写 letterToLowerCase 首字母转大写 letterToUpperCase
     return {

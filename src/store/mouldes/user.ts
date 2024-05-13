@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import { usePromise } from '@utils/usePromise'
-import { login, notfind,mistake } from '@http/user'
+import { login, mistake, notfind } from '@http/user'
 import type { LoginForm } from '@model/user'
 
 export const useUserInfoStore = defineStore('user-info', () => {
