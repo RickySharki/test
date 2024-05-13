@@ -3,18 +3,21 @@ import type { RouteComponent, RouteMeta, RouteRecordRaw } from 'vue-router'
 // 自动注册路由
 // global.ts
 function getRouterMeta() {
+  // 读取路由元数据meta.ts命名路由
   const routerMeta = import.meta.glob('../pages/**/meta.ts', {
     eager: true,
     import: 'default',
   })
   return routerMeta
 }
+// 读取vue组件路径
 const getComponents = import.meta.glob('../pages/**/*.vue', { eager: true, import: 'default' })
 console.log('🚀 ~ file: glob.ts:12 ~ getComponents:', getComponents)
 // 自动注册路由
 export const vueRouters = function (): Array<RouteRecordRaw> {
   // const routerList: Array<RouteRecordRaw> = []
   const pageMeta = getRouterMeta()
+  // Object.entries(pageMeta) 将 pageMeta 对象转换为一个数组
   const routerList: Array<RouteRecordRaw> = Object.entries(pageMeta).map(([pagePath, config]): RouteRecordRaw => {
     const path = pagePath.replace('../pages', '').replace('/meta.ts', '')
     const name = path.split('/').filter(Boolean).join('-')

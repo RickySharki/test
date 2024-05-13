@@ -1,9 +1,10 @@
 // Interface data format used to return a unified format
 export enum ResultEnum {
-  SUCCESS = 0,
+  SUCCESS = 200,
   ERROR = -1,
   TIMEOUT = 401,
   TYPE = 'success',
+  NOTFOUND = 404,
 }
 
 export enum RequestEnum {
@@ -12,6 +13,7 @@ export enum RequestEnum {
   PUT = 'PUT',
   DELETE = 'DELETE',
 }
+
 type Recordable<T = any> = Record<string, T>
 export function resultSuccess<T = Recordable>(
   data: T,
@@ -27,11 +29,11 @@ export function resultSuccess<T = Recordable>(
 
 export function resultError(
   message = 'Request failed',
-  { code = ResultEnum.ERROR, result = null } = {},
+  { code = 0, data = false } = {},
 ) {
   return {
     code,
-    result,
+    data,
     message,
     type: 'error',
   }
@@ -48,6 +50,7 @@ export interface requestParams {
  * @description 本函数用于从request数据中获取token，请根据项目的实际情况修改
  *
  */
+
 export function getRequestToken({
   headers,
 }: requestParams): string | undefined {

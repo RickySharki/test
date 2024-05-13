@@ -25,21 +25,39 @@ export const router = createRouter({
 })
 
 // reset router
+// 重置路由
 export function resetRouter() {
   router.getRoutes().forEach((route) => {
     const { name } = route
+    // 存在不在白名单中的路由就移除
     if (name && !WHITE_NAME_LIST.includes(name as string))
       router.hasRoute(name) && router.removeRoute(name)
   })
 }
 
-router.beforeEach((to, from, next) => {
+// 路由守卫鉴权
+// 定义路由的导航守卫，beforeEach:在路由跳转之前实现
+router.beforeEach(async (to, from, next) => {
+  const arr: any[] = basicRoutes.map(item => item.path)
+  const res = to.path
+  const result = res.replace(res[1], res[1].toUpperCase())
   const { token } = toRefs(useUserInfoStore())
-  if (!token.value && to.path !== '/login')
+  if (!token.value && to.path !== '/login') {
     next({ path: '/login' })
-  else
-    next()
+  }
+  else {
+    if (!arr.includes(result)) {
+      const back = await useUserInfoStore().getError()
+      console.log(1)
+      if (back.code === 404)
+        next({ path: '/404' })
+    }
+    else {
+      next()
+    }
+  }
 })
+
 // config router
 // 配置路由器
 export function setupRouter(app: App<Element>) {
