@@ -1,7 +1,9 @@
 <template>
-  <el-config-provider :locale="lang">
-    <RouterView />
-  </el-config-provider>
+  <div class="data">
+    <el-config-provider :locale="lang">
+      <RouterView />
+    </el-config-provider>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -10,10 +12,9 @@ const { lang } = toRefs(useLocalesStore())
 </script>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+.data{
+  height: 1000px;
+  width: 800px;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
