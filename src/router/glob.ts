@@ -13,6 +13,7 @@ function getRouterMeta() {
 // 读取vue组件路径
 const getComponents = import.meta.glob('../pages/**/*.vue', { eager: true, import: 'default' })
 console.log('🚀 ~ file: glob.ts:12 ~ getComponents:', getComponents)
+// 读取meta的数据，判断是否是layout的children
 // 自动注册路由
 export const vueRouters = function (): Array<RouteRecordRaw> {
   // const routerList: Array<RouteRecordRaw> = []
@@ -31,5 +32,6 @@ export const vueRouters = function (): Array<RouteRecordRaw> {
       meta: config as RouteMeta,
     }
   })
+  console.log('🚀 ~ routerList:', routerList)
   return routerList
 }

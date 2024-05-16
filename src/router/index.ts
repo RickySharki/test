@@ -39,15 +39,13 @@ export function resetRouter() {
 // 定义路由的导航守卫，beforeEach:在路由跳转之前实现
 router.beforeEach(async (to, from, next) => {
   const arr: any[] = basicRoutes.map(item => item.path)
-  console.log(arr)
   const res = to.path
-  const result = res.replace(res[1], res[1].toUpperCase())
   const { token } = toRefs(useUserInfoStore())
   if (!token.value && to.path !== '/login') {
     next({ path: '/login' })
   }
   else {
-    if (!arr.includes(result)) {
+    if (!arr.includes(res)) {
       const back = await useUserInfoStore().getError()
       console.log(1)
       if (back.code === 404)
