@@ -1,6 +1,5 @@
 export default {
-  title: '关于',
+  title: '二级产品',
   permissions: ['admin', 'user'],
-  parent: 'Layout',
   isChild: true,
 }

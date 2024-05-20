@@ -3,62 +3,77 @@ import type { App } from 'vue'
 
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserInfoStore } from '@store/mouldes/user'
-import { basicRoutes } from './routes'
+import { asyncRoutes, baseRoutes } from './routes'
 
-// 白名单应该包含基本静态路由
-const WHITE_NAME_LIST: string[] = []
-const getRouteNames = (array: any[]) =>
+const ALL_PATH_LIST: string[] = []
+
+const getRoutePaths = (array: RouteRecordRaw[], parentPath = '', isChild = false) =>
   array.forEach((item) => {
-    WHITE_NAME_LIST.push(item.name)
-    getRouteNames(item.children || [])
+    const realPath = isChild ? `/${item.path}` : item.path
+    const fullPath = parentPath + realPath
+    ALL_PATH_LIST.push(fullPath)
+    if (item.children)
+      getRoutePaths(item.children, fullPath, true)
   })
-getRouteNames(basicRoutes)
 
-// app router
+getRoutePaths([...baseRoutes, ...asyncRoutes])
+
 // 创建一个可以被 Vue 应用程序使用的路由实例
 export const router = createRouter({
   history: createWebHistory(),
-  // 应该添加到路由的初始路由列表。
-  routes: basicRoutes as unknown as RouteRecordRaw[],
-  // 是否应该禁止尾部斜杠。默认为假
+  routes: baseRoutes as RouteRecordRaw[], // 初始只加载基础路由
   strict: true,
 })
 
-// reset router
 // 重置路由
 export function resetRouter() {
   router.getRoutes().forEach((route) => {
     const { name } = route
-    // 存在不在白名单中的路由就移除
-    if (name && !WHITE_NAME_LIST.includes(name as string))
+    if (name && !ALL_PATH_LIST.includes(name as string))
       router.hasRoute(name) && router.removeRoute(name)
   })
 }
 
 // 路由守卫鉴权
-// 定义路由的导航守卫，beforeEach:在路由跳转之前实现
+function filterAsyncRoute(asnycRoute: any, role: any) {
+  return asnycRoute.filter((item: any) => {
+    if (item.meta && Array.isArray(item.meta.roles) && item.meta.roles.includes(role)) {
+      if (item.children && item.children.length > 0)
+        item.children = filterAsyncRoute(item.children, role)
+      return true
+    }
+    return false
+  })
+}
+
 router.beforeEach(async (to, from, next) => {
-  const arr: any[] = basicRoutes.map(item => item.path)
-  const res = to.path
-  const { token } = toRefs(useUserInfoStore())
-  if (!token.value && to.path !== '/login') {
+  console.log(to.path)
+  const userInfoStore = useUserInfoStore()
+  const token = userInfoStore.userInfo ? userInfoStore.userInfo.token : null
+  const role = userInfoStore.userInfo ? userInfoStore.userInfo.role : null
+  if (!token && to.path !== '/login') {
     next({ path: '/login' })
   }
   else {
-    if (!arr.includes(res)) {
-      const back = await useUserInfoStore().getError()
-      console.log(1)
-      if (back.code === 404)
-        next({ path: '/404' })
+    if (!ALL_PATH_LIST.includes(to.path)) {
+      console.log(ALL_PATH_LIST)
+      next({ path: '/404' })
     }
     else {
+      if (role) {
+        const adminRoutes = filterAsyncRoute(asyncRoutes, role)
+        adminRoutes.forEach((route) => {
+          router.addRoute(route)
+        })
+        userInfoStore.setAdminRoutes(adminRoutes)
+      }
       next()
     }
   }
 })
 
-// config router
 // 配置路由器
 export function setupRouter(app: App<Element>) {
   app.use(router)
 }
+export default router

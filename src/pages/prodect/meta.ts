@@ -1,4 +1,5 @@
 export default {
-  title: '二级目录',
+  title: '产品',
   permissions: ['admin', 'user'],
+  isChild: true,
 }

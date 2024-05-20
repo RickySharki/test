@@ -14,7 +14,7 @@ const { lang } = toRefs(useLocalesStore())
 <style scoped>
 .data{
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);

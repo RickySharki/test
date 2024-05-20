@@ -1,5 +1,5 @@
 export default {
-  title: '首页',
+  title: '一级产品',
   permissions: ['admin', 'user'],
-  parent: 'Layout',
+  isChild: true,
 }

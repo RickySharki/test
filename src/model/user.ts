@@ -7,5 +7,5 @@ export interface UserInfo {
   userName: string
   userId: number
   token: string
-
+  role: string
 }

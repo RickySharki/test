@@ -7,6 +7,7 @@ const tokenInfo = {
   token: '1234567890',
   userName: 'Ricky',
   userId: '1',
+  role: 'admin',
 }
 
 export default [
