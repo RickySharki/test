@@ -5,7 +5,7 @@ import { login, mistake, notfind } from '@http/user'
 import type { LoginForm } from '@model/user'
 
 export const useUserInfoStore = defineStore('user-info', () => {
-  const { result: userInfo, isLoading, refresh: Login } = usePromise((form: LoginForm) => form ? login(form) : null)
+  const { result: userInfo, isLoading, refresh: Login } = usePromise((url: string, form: LoginForm) => form ? login(url, form) : null)
   const { result: userNotFound, refresh: getError } = usePromise<any>(() => notfind())
   const { result: usermistake, refresh: getmistake } = usePromise<any>(() => mistake())
 

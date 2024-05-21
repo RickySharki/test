@@ -9,6 +9,12 @@ const tokenInfo = {
   userId: '1',
   role: 'admin',
 }
+const userlogin = {
+  token: '1234567890',
+  userName: 'user',
+  userId: '0',
+  role: 'user',
+}
 
 export default [
   {
@@ -17,11 +23,16 @@ export default [
     response: () => resultSuccess(userInfo),
   },
   {
-    url: '/api/login',
+    url: '/api/login/admin',
     method: 'post',
     response: () => resultSuccess(tokenInfo),
   },
   // 添加一个接口，故意报错404  resultError('404 NOT FOUND',{code:404,{success:false}})
+  {
+    url: '/api/login/user',
+    method: 'post',
+    response: () => resultSuccess(userlogin),
+  },
   {
     url: '/api/notfound',
     method: 'get',

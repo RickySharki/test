@@ -50,7 +50,9 @@ import type { FormInstance } from 'element-plus'
 import { useUserInfoStore } from '@store/mouldes/user'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useAuthStore } from '@store/mouldes/auth'
 
+const authStore = useAuthStore()
 const router = useRouter()
 const store = useUserInfoStore()
 const formRef = ref<FormInstance>()
@@ -64,9 +66,11 @@ const submitForm = (formEl: FormInstance | undefined) => {
     return
   formEl.validate(async (valid) => {
     if (valid) {
-      const res = await store.Login(loginForm)
+      const url = loginForm.userName === 'admin' ? '/login/admin' : '/login/user'
+      const res = await store.Login(url, loginForm)
       if (res?.token)
-        router.push('/layout')
+        authStore.loadAdminRoutes()
+      router.push('/layout')
     }
     else {
       console.log('error submit!')

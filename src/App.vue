@@ -8,6 +8,7 @@
 
 <script setup lang="ts">
 import { useLocalesStore } from '@store/mouldes/locales'
+
 const { lang } = toRefs(useLocalesStore())
 </script>
 

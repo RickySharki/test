@@ -1,6 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
 import type { App } from 'vue'
-
 import { createRouter, createWebHistory } from 'vue-router'
 import { useUserInfoStore } from '@store/mouldes/user'
 import { asyncRoutes, baseRoutes } from './routes'
@@ -35,22 +34,21 @@ export function resetRouter() {
 }
 
 // 路由守卫鉴权
-function filterAsyncRoute(asnycRoute: any, role: any) {
-  return asnycRoute.filter((item: any) => {
-    if (item.meta && Array.isArray(item.meta.roles) && item.meta.roles.includes(role)) {
-      if (item.children && item.children.length > 0)
-        item.children = filterAsyncRoute(item.children, role)
-      return true
-    }
-    return false
-  })
-}
+// function filterAsyncRoute(asnycRoute: any, role: any) {
+//   return asnycRoute.filter((item: any) => {
+//     if (item.meta && Array.isArray(item.meta.roles) && item.meta.roles.includes(role)) {
+//       if (item.children && item.children.length > 0)
+//         item.children = filterAsyncRoute(item.children, role)
+//       return true
+//     }
+//     return false
+//   })
+// }
 
 router.beforeEach(async (to, from, next) => {
   console.log(to.path)
   const userInfoStore = useUserInfoStore()
   const token = userInfoStore.userInfo ? userInfoStore.userInfo.token : null
-  const role = userInfoStore.userInfo ? userInfoStore.userInfo.role : null
   if (!token && to.path !== '/login') {
     next({ path: '/login' })
   }
@@ -59,21 +57,10 @@ router.beforeEach(async (to, from, next) => {
       console.log(ALL_PATH_LIST)
       next({ path: '/404' })
     }
-    else {
-      if (role) {
-        const adminRoutes = filterAsyncRoute(asyncRoutes, role)
-        adminRoutes.forEach((route) => {
-          router.addRoute(route)
-        })
-        userInfoStore.setAdminRoutes(adminRoutes)
-      }
-      next()
-    }
+    next({...to})
   }
 })
-
 // 配置路由器
 export function setupRouter(app: App<Element>) {
   app.use(router)
 }
-export default router
