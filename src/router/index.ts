@@ -57,7 +57,7 @@ router.beforeEach(async (to, from, next) => {
       console.log(ALL_PATH_LIST)
       next({ path: '/404' })
     }
-    next({...to})
+    next()
   }
 })
 // 配置路由器
