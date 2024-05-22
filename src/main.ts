@@ -35,5 +35,4 @@ async function init() {
   const authStore = useAuthStore()
   authStore.loadAdminRoutes()
 }
-
 init()

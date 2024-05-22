@@ -6,7 +6,7 @@ import { asyncRoutes, baseRoutes } from './routes'
 
 const ALL_PATH_LIST: string[] = []
 
-const getRoutePaths = (array: RouteRecordRaw[], parentPath = '', isChild = false) =>
+const getRoutePaths = (array: any[], parentPath = '', isChild = false) =>
   array.forEach((item) => {
     const realPath = isChild ? `/${item.path}` : item.path
     const fullPath = parentPath + realPath

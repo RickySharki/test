@@ -1,42 +1,75 @@
 <template>
-  <div class="header-content">
-    <el-menu class="el-menu-demo" mode="horizontal">
-      <el-menu-item index="1">
-        首页
-      </el-menu-item>
-      <el-menu-item index="2">
-        文档
-      </el-menu-item>
-      <el-menu-item index="3">
-        关于
-      </el-menu-item>
-    </el-menu>
+  <div class="header">
+    <div class="header-content">
+      <p>Welcome</p>
+      <div class="avatar">
+        <img src="src/assets/头像.png" alt="User Avatar">
+        <el-dropdown>
+          <span class="el-dropdown-link">
+            {{ store.userInfo?.userName }}
+            <el-icon class="el-icon--right">
+              <arrow-down />
+            </el-icon>
+          </span>
+          <template #dropdown>
+            <el-dropdown-menu>
+              <el-dropdown-item @click="logout">
+                退出登录
+              </el-dropdown-item>
+            </el-dropdown-menu>
+          </template>
+        </el-dropdown>
+      </div>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
-const activeIndex = ref('1')
+import { useUserInfoStore } from '@store/mouldes/user'
+const store = useUserInfoStore()
+const logout = () => {
+  store.clearUserInfo()
+  // 重定向到首页
+  window.location.href = '/login'
+}
 </script>
 
 <style scoped lang="scss">
-.header-content {
+.header {
   display: flex;
   justify-content: center;
+  align-items: center;
+  background-color: #333;
+  padding: 20px;
+  height:50px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1000; /* Ensure it's on top */
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 100%;
   padding: 0 20px;
 }
 
-.el-menu-demo {
+.avatar {
   display: flex;
-  justify-content: space-between ; /* 或者使用 space-between */
-  width: 100%;
-  border: none; /* 去除边框 */
+  margin-left:500px ;
 }
 
-.el-menu-item {
-  flex: 1;
-  text-align: center;
+.avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.el-dropdown-link{
+  p{
+    top: 30px;
+  }
 }
 </style>

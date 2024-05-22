@@ -1,5 +1,5 @@
 // src/router/routes.js
-
+import type { Route } from '@model/user'
 import Layout from '../layout/index.vue'
 import NotFound from '../pages/404/index.vue'
 import Login from '../pages/login/index.vue'
@@ -8,10 +8,11 @@ import ProdectComponents from '../pages/prodect/components/index.vue'
 import Prodect from '../pages/prodect/index.vue'
 import ProdectSubHome from '../pages/prodect/subHome/index.vue'
 
-export const baseRoutes = [
+export const baseRoutes: Route[] = [
   {
     path: '/',
     redirect: '/login',
+    component: Login,
   },
   {
     path: '/404',
@@ -31,7 +32,7 @@ export const baseRoutes = [
   },
 ]
 
-export const asyncRoutes = [
+export const asyncRoutes: Route[] = [
   {
     path: '/layout',
     component: Layout,
@@ -64,7 +65,6 @@ export const asyncRoutes = [
             meta: {
               title: '一级产品',
               roles: ['admin'], // 有权限的角色
-              requireAuth: true,
             },
           },
           {

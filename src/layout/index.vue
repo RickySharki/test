@@ -6,7 +6,7 @@
       </el-aside>
       <el-container>
         <el-header class="layout-header">
-          Header
+          <Header />
         </el-header>
         <el-main class="layout-main">
           <Main />
@@ -19,6 +19,7 @@
 <script setup lang="ts">
 import Menu from './menu/index.vue'
 import Main from './main/index.vue'
+import Header from './header/index.vue'
 </script>
 
 <style scoped lang="scss">
