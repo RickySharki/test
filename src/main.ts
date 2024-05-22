@@ -1,6 +1,4 @@
 import { createApp } from 'vue'
-import { useAuthStore } from '@store/mouldes/auth'
-import { useUserInfoStore } from '@store/mouldes/user'
 // 引入全局样式
 import App from './App.vue'
 // 引入路由配置
@@ -32,7 +30,5 @@ async function init() {
   // if (userInfoStore.userInfo?.role)
   // 挂载应用
   app.mount('#app')
-  const authStore = useAuthStore()
-  authStore.loadAdminRoutes()
 }
 init()

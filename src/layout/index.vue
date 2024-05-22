@@ -24,6 +24,9 @@ import Header from './header/index.vue'
 
 <style scoped lang="scss">
 .common-layout{
+  .el-header{
+      padding: 0 !important;
+    }
   .layout-menu{
     color: red;
     border-right: 1px solid #E4E7ED;

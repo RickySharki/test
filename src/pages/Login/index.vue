@@ -69,8 +69,9 @@ const submitForm = (formEl: FormInstance | undefined) => {
       const url = loginForm.userName === 'admin' ? '/login/admin' : '/login/user'
       const res = await store.Login(url, loginForm)
       if (res?.token)
-        authStore.loadAdminRoutes()
-      router.push('/layout')
+        // authStore.loadAdminRoutes()
+        // localStorage.setItem('token', res.token)
+        router.push('/layout')
     }
     else {
       console.log('error submit!')

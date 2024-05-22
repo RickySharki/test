@@ -3,16 +3,12 @@
     <div class="header-content">
       <p>Welcome</p>
       <div class="avatar">
-        <img src="src/assets/头像.png" alt="User Avatar">
         <el-dropdown>
-          <span class="el-dropdown-link">
-            {{ store.userInfo?.userName }}
-            <el-icon class="el-icon--right">
-              <arrow-down />
-            </el-icon>
-          </span>
+          <img src="src/assets/avatar.png" alt="User Avatar">
           <template #dropdown>
             <el-dropdown-menu>
+              <el-dropdown-item>你好，{{ store.userInfo?.userName }}</el-dropdown-item>
+              <el-dropdown-item>个人中心</el-dropdown-item>
               <el-dropdown-item @click="logout">
                 退出登录
               </el-dropdown-item>
@@ -25,7 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
 import { useUserInfoStore } from '@store/mouldes/user'
 const store = useUserInfoStore()
 const logout = () => {
@@ -41,12 +36,6 @@ const logout = () => {
   justify-content: center;
   align-items: center;
   background-color: #333;
-  padding: 20px;
-  height:50px;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 1000; /* Ensure it's on top */
 }
 
 .header-content {
@@ -54,12 +43,12 @@ const logout = () => {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding: 0 20px;
+  width:100%;
+  padding-right: 50px;
 }
 
 .avatar {
   display: flex;
-  margin-left:500px ;
 }
 
 .avatar img {

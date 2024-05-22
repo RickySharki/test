@@ -14,6 +14,7 @@ const alias: Record<string, string> = {
   '@http': resolve(__dirname, 'src', 'http'),
   '@utils': resolve(__dirname, 'src', 'utils'),
   '@model': resolve(__dirname, 'src', 'model'),
+  '@router': resolve(__dirname, 'src', 'router'),
   'mock': resolve(__dirname, 'mock'),
 
 }

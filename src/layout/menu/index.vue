@@ -43,9 +43,10 @@
 <script setup>
 import { ref } from 'vue'
 import { useUserInfoStore } from '@store/mouldes/user'
+import { asyncRoutes, baseRoutes } from '@router/routes'
 
-const routeStore = useUserInfoStore()
-const layoutRoute = routeStore.adminRoutes.find(route => route.path === '/layout')
+// const routeStore = useUserInfoStore()
+const layoutRoute = asyncRoutes.find(route => route.path === '/layout')
 const menus = ref(layoutRoute ? layoutRoute.children : [])
 console.log(menus)
 </script>

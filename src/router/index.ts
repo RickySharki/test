@@ -20,7 +20,7 @@ getRoutePaths([...baseRoutes, ...asyncRoutes])
 // 创建一个可以被 Vue 应用程序使用的路由实例
 export const router = createRouter({
   history: createWebHistory(),
-  routes: baseRoutes as RouteRecordRaw[], // 初始只加载基础路由
+  routes: [...baseRoutes, ...asyncRoutes] as RouteRecordRaw[], // 初始只加载基础路由
   strict: true,
 })
 

@@ -22,7 +22,7 @@ export const useAuthStore = defineStore('auth', () => {
     const role = userInfoStore.userInfo?.role
     if (role) {
       const adminRoutes = filterAsyncRoute(cloneDeep(asyncRoutes), role)
-      adminRoutes.forEach((route: any) => {
+      adminRoutes.forEach((route) => {
         router.addRoute(route)
       })
       userInfoStore.setAdminRoutes(adminRoutes)
