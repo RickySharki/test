@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <div class="header-content">
+      <bread />
       <p>Welcome</p>
       <div class="avatar">
         <el-dropdown>
@@ -22,11 +23,13 @@
 
 <script lang="ts" setup>
 import { useUserInfoStore } from '@store/mouldes/user'
+import { router } from 'src/router'
+import bread from './breadcrumb/index.vue'
 const store = useUserInfoStore()
 const logout = () => {
   store.clearUserInfo()
   // 重定向到首页
-  window.location.href = '/login'
+  router.push('/login')
 }
 </script>
 

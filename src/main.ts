@@ -13,6 +13,7 @@ import { setupStore } from './store'
 import { setupElementPlus } from './utils/registerElement'
 // 引入国际
 import { setupI18n } from './locales/index'
+// 引入图标
 
 // 这里使用函数的方法进行注册，是为了处理一下异步的情况，可以使用async/await
 async function init() {

@@ -37,6 +37,7 @@ export const asyncRoutes: Route[] = [
     path: '/layout',
     component: Layout,
     meta: {
+      title: '首页',
       roles: ['admin', 'user'], // 有权限的角色
     },
     children: [
