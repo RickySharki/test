@@ -52,6 +52,18 @@ console.log(menus)
 </script>
 
 <style lang="scss" scoped>
+.title{
+  color: #f6f6f8;
+  height: 30px;
+  font-size: 20px;
+  text-align: center;
+  background-color: rgb(48, 65, 86)
+}
+.el-menu-item{
+  padding-left: 20px;
+  color: rgb(191, 203, 217);
+  background-color: rgb(48, 65, 86);
+}
 .icons {
   width: 18px;
   height: 18px;

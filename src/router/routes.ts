@@ -6,6 +6,8 @@ import Login from '../pages/login/index.vue'
 import About from '../pages/about/index.vue'
 import ProdectComponents from '../pages/prodect/components/index.vue'
 import Prodect from '../pages/prodect/index.vue'
+import Picture from '../pages/picture/index.vue'
+import Home from '../pages/home/index.vue'
 import ProdectSubHome from '../pages/prodect/subHome/index.vue'
 
 export const baseRoutes: Route[] = [
@@ -42,12 +44,20 @@ export const asyncRoutes: Route[] = [
     },
     children: [
       {
-        path: 'about',
-        name: 'about',
-        component: About,
+        path: 'home',
+        component: Home,
         meta: {
-          title: '关于',
+          title: '首页',
           roles: ['admin', 'user'], // 有权限的角色
+        },
+      },
+      {
+        path: 'picture',
+        name: 'Picture',
+        component: Picture,
+        meta: {
+          title: '绘画',
+          roles: ['admin'], // 有权限的角色
         },
       },
       {
@@ -78,6 +88,15 @@ export const asyncRoutes: Route[] = [
             },
           },
         ],
+      },
+      {
+        path: 'about',
+        name: 'about',
+        component: About,
+        meta: {
+          title: '关于',
+          roles: ['admin', 'user'], // 有权限的角色
+        },
       },
     ],
   },

@@ -28,16 +28,14 @@ import Header from './header/index.vue'
       padding: 0 !important;
     }
   .layout-menu{
-    color: red;
     border-right: 1px solid #E4E7ED;
     width: 250px ;
     height: 100vh;
-    background-color:#9e7817 ;
+    background-color: rgb(48, 65, 86);
   }
   .layout-header{
     color: white;
     height: 50px;
-    background-color: cadetblue ;
   }
   .layout-main{
     color: black;

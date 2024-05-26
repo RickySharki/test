@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="header-content">
-      <bread />
+      <Breadcrumb />
       <p>Welcome</p>
       <div class="avatar">
         <el-dropdown>
@@ -24,7 +24,6 @@
 <script lang="ts" setup>
 import { useUserInfoStore } from '@store/mouldes/user'
 import { router } from 'src/router'
-import bread from './breadcrumb/index.vue'
 const store = useUserInfoStore()
 const logout = () => {
   store.clearUserInfo()
@@ -38,16 +37,18 @@ const logout = () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #333;
+  background-color: #fff;
 }
 
 .header-content {
+  color: #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 100%;
   width:100%;
   padding-right: 50px;
+  border-bottom: 2px solid black;
 }
 
 .avatar {

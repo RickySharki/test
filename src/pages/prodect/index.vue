@@ -1,20 +1,6 @@
 <template>
   <h1>{{ t('hello.hi') }}</h1>
-  <!-- 第三层路由出口 -->
-  <router-view />
-  <!-- <el-select v-model="lang" class="m-2" placeholder="i18n" size="large">
-    <el-option
-      v-for="item in options"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value"
-    />
-  </el-select>
-  <comp />
-  <el-link>点击这个按钮调用报错的接口，提示报错</el-link>
-  <el-button type="primary" @click="mistake()">
-    500error
-  </el-button> -->
+  <RouterView />
 </template>
 
 <script lang="ts" setup>
