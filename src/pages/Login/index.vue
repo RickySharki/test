@@ -51,7 +51,8 @@ import { useUserInfoStore } from '@store/mouldes/user'
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useAuthStore } from '@store/mouldes/auth'
-
+import { asyncRoutes } from 'src/router/routes'
+const route = asyncRoutes
 const authStore = useAuthStore()
 const router = useRouter()
 const store = useUserInfoStore()
@@ -61,6 +62,12 @@ const loginForm = reactive<LoginForm>({
   passWord: '',
 })
 
+if (route[0]?.children) {
+  debugger
+  route[0].children.forEach((item) => {
+    console.log(item.meta?.roles)
+  })
+}
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl)
     return

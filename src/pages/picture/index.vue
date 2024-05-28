@@ -7,10 +7,10 @@
       <Echarts auto-size :no-rebuilt="true" :params="option1" />
     </div>
     <div class="pie">
-      <Echarts auto-size :no-rebuilt="true" :params="option2" />
+      <Echarts auto-size :no-rebuilt="true" :params="option2" style="width: 439px; height: 300px;" />
     </div>
     <div class="histogram">
-      <Echarts auto-size :no-rebuilt="true" :params="option3" />
+      <Echarts auto-size :no-rebuilt="true" :params="option3" style="width: 439px; height: 300px;" />
     </div>
   </div>
 </template>
@@ -191,7 +191,7 @@ const option1 = {
     },
   },
   legend: {
-    bottom: 5,
+    bottom: 10, // 调整图例的位置，增加 bottom 值
     data: ['Beijing', 'Shanghai', 'Guangzhou'],
     itemGap: 20,
     textStyle: {
@@ -201,6 +201,8 @@ const option1 = {
     selectedMode: 'single',
   },
   radar: {
+    center: ['50%', '50%'], // 确保雷达图居中
+    radius: '65%', // 调整雷达图的大小
     indicator: [
       { name: 'AQI', max: 300 },
       { name: 'PM2.5', max: 250 },
@@ -239,7 +241,9 @@ const option1 = {
     {
       name: 'Beijing',
       type: 'radar',
-      lineStyle,
+      lineStyle: {
+        width: 2,
+      },
       data: dataBJ,
       symbol: 'none',
       itemStyle: {
@@ -252,7 +256,9 @@ const option1 = {
     {
       name: 'Shanghai',
       type: 'radar',
-      lineStyle,
+      lineStyle: {
+        width: 2,
+      },
       data: dataSH,
       symbol: 'none',
       itemStyle: {
@@ -265,7 +271,9 @@ const option1 = {
     {
       name: 'Guangzhou',
       type: 'radar',
-      lineStyle,
+      lineStyle: {
+        width: 2,
+      },
       data: dataGZ,
       symbol: 'none',
       itemStyle: {
@@ -277,6 +285,7 @@ const option1 = {
     },
   ],
 }
+
 const option2 = {
   legend: {
     top: 'bottom',
@@ -294,7 +303,7 @@ const option2 = {
     {
       name: 'Nightingale Chart',
       type: 'pie',
-      radius: [50, 250],
+      radius: [30, 150],
       center: ['50%', '50%'],
       roseType: 'area',
       itemStyle: {
@@ -317,6 +326,8 @@ const option3 = {
   title: {
     text: 'Rainfall vs Evaporation',
     subtext: 'Fake Data',
+    left: 'center',
+    top: '20', // 调整标题的位置，避免与图表重叠
   },
   tooltip: {
     trigger: 'axis',
@@ -333,11 +344,9 @@ const option3 = {
       saveAsImage: { show: true },
     },
   },
-  calculable: true,
   xAxis: [
     {
       type: 'category',
-      // prettier-ignore
       data: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     },
   ],
@@ -350,9 +359,7 @@ const option3 = {
     {
       name: 'Rainfall',
       type: 'bar',
-      data: [
-        2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3,
-      ],
+      data: [2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3],
       markPoint: {
         data: [
           { type: 'max', name: 'Max' },
@@ -366,9 +373,7 @@ const option3 = {
     {
       name: 'Evaporation',
       type: 'bar',
-      data: [
-        2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3,
-      ],
+      data: [2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3],
       markPoint: {
         data: [
           { name: 'Max', value: 182.2, xAxis: 7, yAxis: 183 },
