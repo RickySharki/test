@@ -61,13 +61,8 @@ const loginForm = reactive<LoginForm>({
   userName: '',
   passWord: '',
 })
+console.log(route[0].children[0].meta?.roles)
 
-if (route[0]?.children) {
-  debugger
-  route[0].children.forEach((item) => {
-    console.log(item.meta?.roles)
-  })
-}
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl)
     return
