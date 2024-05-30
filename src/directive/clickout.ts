@@ -12,7 +12,6 @@ import type { DirectiveBinding } from 'vue'
 //   },
 // }
 // export default ClickOutsideDirective
-
 // 扩展 HTMLElement 以包含 __clickOutsideHandler__ 属性
 type ClickOutsideElement = HTMLElement & {
   // 可选属性，用于存储点击外部处理函数
