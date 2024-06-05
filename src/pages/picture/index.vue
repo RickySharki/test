@@ -394,14 +394,12 @@ const option3 = {
   height: 500px;
   margin-bottom: 80px;
 }
-
 .container {
   width: 100%;
   display: flex;
   gap: 20px;
   justify-content: space-between;
 }
-
 .radar, .pie, .histogram {
   flex: 1;
   min-width: 0; /* 确保图表不会因为最小宽度而变得太大 */

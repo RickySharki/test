@@ -5,6 +5,7 @@ const hasPermission = (value: string | string[], role: string) => {
     return value.includes(role)
   return value === role
 }
+
 export const hasbutton = (app: App) => {
   app.directive('permission', {
     mounted(el: HTMLElement, binding: DirectiveBinding) {

@@ -1,19 +1,12 @@
-import mitt from 'mitt'
-// 定义事件类型
-type NotificationType = 'success' | 'warning' | 'info' | 'error'
+import mitt, { type Emitter } from 'mitt'
+import type { NotificationOptions } from 'element-plus'
 
-interface CustomNotificationOptions {
-  title?: string
-  message: string
-  type?: NotificationType
-  duration?: number // in milliseconds
-}
 // 定义事件类型
-interface Events {
-  info: CustomNotificationOptions
-  // 你可以添加其他事件类型
+// eslint-disable-next-line @typescript-eslint/consistent-type-definitions
+type Events = {
+  'info': NotificationOptions
 }
 // 创建并导出 mitt 实例
-const emitter = mitt<Events>()
+const emitter: Emitter<Events> = mitt<Events>()
 
 export default emitter

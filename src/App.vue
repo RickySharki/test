@@ -8,11 +8,11 @@
 
 <script setup lang="ts">
 import { useLocalesStore } from '@store/mouldes/locales' // 修正路径
-import { Notification } from './hooks/usenotification'
-import type { NotificationOptions } from './hooks/usenotification'
+import type { NotificationOptions } from 'element-plus'
+import { useNotification } from '@hooks/useNotification'
 import emitter from './utils/mitt'
 const { lang } = toRefs(useLocalesStore())
-const notify = Notification().notify // 修正变量名
+const { notify } = useNotification() // 修正变量名
 const open = (list: NotificationOptions) => {
   notify(list) // 修正函数调用
 }

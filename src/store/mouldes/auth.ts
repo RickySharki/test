@@ -17,7 +17,6 @@ function filterAsyncRoute(asnycRoute: Route[], role: string) {
 }
 export const useAuthStore = defineStore('auth', () => {
   const userInfoStore = useUserInfoStore()
-
   const loadAdminRoutes = () => {
     const role = userInfoStore.userInfo?.role
     if (role) {
@@ -28,7 +27,6 @@ export const useAuthStore = defineStore('auth', () => {
       userInfoStore.setAdminRoutes(adminRoutes)
     }
   }
-
   return {
     loadAdminRoutes,
   }
