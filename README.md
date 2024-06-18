@@ -34,7 +34,7 @@ TODO：
 - 面包屑
 - 全局404
 - 国际化
-- 全局组件的封装(messagebox、dialog等)
+- 全局组件的封装(useDialog等)
 - 全局指令(v-permission)
 - 全局通用hook封装
 - 富文本编辑器（评论编辑框）

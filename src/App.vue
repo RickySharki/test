@@ -1,19 +1,30 @@
 <template>
-  <el-config-provider :locale="lang">
-    <RouterView />
-  </el-config-provider>
+  <div class="data">
+    <el-config-provider :locale="lang">
+      <RouterView />
+    </el-config-provider>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { useLocalesStore } from '@store/mouldes/locales'
+import { useLocalesStore } from '@store/mouldes/locales' // 修正路径
+import type { NotificationOptions } from 'element-plus'
+import { useNotification } from '@hooks/useNotification'
+import emitter from './utils/mitt'
 const { lang } = toRefs(useLocalesStore())
+const { notify } = useNotification() // 修正变量名
+const open = (list: NotificationOptions) => {
+  notify(list) // 修正函数调用
+}
+emitter.on('info', (list: NotificationOptions) => {
+  open(list)
+})
 </script>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
+.data {
+  height: 100vh;
+  width: 100%;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);

@@ -1,6 +1,8 @@
 import axios from 'axios'
 import type { AxiosRequestConfig } from 'axios'
+import { ElMessage } from 'element-plus'
 import { defaults } from 'lodash-es'
+import { router } from '../router'
 const defaultConfig: AxiosRequestConfig = {
   baseURL: '/api',
   // 请求超时时间
@@ -27,8 +29,12 @@ instance.interceptors.request.use((config: AxiosRequestConfig) => {
 
 // 添加了一个响应拦截器
 instance.interceptors.response.use((res) => {
-  if (res.data.code !== 200)
+  if (res.data.code !== 200) {
+    ElMessage.error(res.data.message)
+    if (res.data.code === 404)
+      router.push({ path: '/404' })
     return res.data
+  }
   // 同意处理res.code === 404,跳转404页面
   return res.data.data
 })

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="form-container">
     <el-form
       ref="formRef"
       :model="loginForm"
@@ -48,27 +48,30 @@
 import type { LoginForm } from '@model/user'
 import type { FormInstance } from 'element-plus'
 import { useUserInfoStore } from '@store/mouldes/user'
-
+import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useAuthStore } from '@store/mouldes/auth'
+import { asyncRoutes } from 'src/router/routes'
+const route = asyncRoutes
+const authStore = useAuthStore()
 const router = useRouter()
-console.log('🚀 ~ file: index.vue:53 ~ router:', router)
 const store = useUserInfoStore()
 const formRef = ref<FormInstance>()
 const loginForm = reactive<LoginForm>({
   userName: '',
   passWord: '',
 })
-
 const submitForm = (formEl: FormInstance | undefined) => {
   if (!formEl)
     return
-  // validate()用于对表单进行验证
   formEl.validate(async (valid) => {
-    // valid为表单验证结果
     if (valid) {
-      const res = await store.Login(loginForm)
-      console.log(res)
+      const url = loginForm.userName === 'admin' ? '/login/admin' : '/login/user'
+      const res = await store.Login(url, loginForm)
       if (res?.token)
-        router.push('/home')
+        // authStore.loadAdminRoutes()
+        // localStorage.setItem('token', res.token)
+        router.push('/layout')
     }
     else {
       console.log('error submit!')
@@ -80,9 +83,23 @@ const submitForm = (formEl: FormInstance | undefined) => {
 const resetForm = (formEl: FormInstance | undefined) => {
   if (!formEl)
     return
-  // resetFields()用于重置表单字段，将表单字段的值重置为初始值
   formEl.resetFields()
 }
 </script>
 
-  <style lang="scss"></style>
+<style lang="scss" scoped>
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height */
+}
+
+.el-form {
+  width: 400px; /* Set a fixed width */
+  padding: 20px;
+  background-color: #fff; /* Background color */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1); /* Shadow for the form */
+}
+</style>
